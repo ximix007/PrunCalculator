@@ -1,22 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import { RecipiesView } from './components/recipiesView'
+import { PriceView } from "./components/pricesView"
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <RecipiesView ticker = "BBH"></RecipiesView>
+        <PriceView materialTicker = "BBH" marketTicker = "IC1"></PriceView>
       </header>
     </div>
   );
