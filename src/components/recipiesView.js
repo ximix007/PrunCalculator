@@ -6,7 +6,5 @@ export const RecipiesView = (props) => {
 
     RecipiesGeter.getInstance().GetRecipies(props.ticker).then(setRecipies)
 
-    //console.log(recipies)
-
     return <p>{JSON.stringify(recipies?.map(x => x.RecipeName))}</p>
 }
