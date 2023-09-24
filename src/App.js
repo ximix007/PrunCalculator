@@ -7,9 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <RecipiesView ticker = "BBH"></RecipiesView>
-        <PriceView materialTicker = "BBH" marketTicker = "IC1"></PriceView>
-        <Calculator materialTicker = "BBH" marketTicker = "IC1"></Calculator>
+        <Calculator materialTicker = "MCG" marketTicker = "IC1"></Calculator>
       </header>
     </div>
   );

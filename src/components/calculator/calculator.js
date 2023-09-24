@@ -8,7 +8,24 @@ import { recipiesParce } from "../../API/parcers/recipies"
 const SingleRecipe = (props) => {
     let price = props.price;
     let recipe = props.recipe;
-    return <p>{JSON.stringify(price)} {recipe.RecipeName}</p>
+    let [materialPrices, setMaterialPrices] = useState([])
+
+    useEffect(() => {
+        let temp = []
+        recipe.Inputs.map(input => PriceGeter.getInstance().GetPrices(input.CommodityTicker, props.marketTicker)
+        .then(x => temp.push(Object.assign(priceParce(x), {"Amount": input.Amount}))))
+
+        return () => setMaterialPrices(temp)},
+        [recipe.Inputs, props.recipe, props.marketTicker])
+
+    let highProductionCost = materialPrices.reduce((acum, cur) => acum + (cur.Amount * cur.Ask), 0)
+    let lowProductionCost = materialPrices.reduce((acum, cur) => acum + (cur.Amount * cur.Bid), 0)
+    let highProfit = price.Ask * recipe.Outputs.Amount - lowProductionCost
+    let lowProfit = price.Bid * recipe.Outputs.Amount - highProductionCost
+
+    return <p>{recipe.RecipeName} <br/> 
+        High Profit: {highProfit}; Low Profit: {lowProfit} <br/>
+        High Marginality: {highProfit / lowProductionCost} Low Marginality: {lowProfit / highProductionCost}</p>
 }
 
 
@@ -25,7 +42,7 @@ export const Calculator = (props) => {
         return () => (1)},
         [props.materialTicker, props.marketTicker])
 
-    console.log(price, recipies)
+    //console.log(price, recipies)
 
-    return <p>{recipies.map(x => <><SingleRecipe price = {price} recipe = {x}/><br/></>)}</p>
+    return <p>{recipies.map(x => <><SingleRecipe price = {price} recipe = {x} marketTicker = {props.marketTicker}/><br/></>)}</p>
 }
