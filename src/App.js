@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Calculator materialTicker = "MCG" marketTicker = "IC1"></Calculator>
+        <Calculator materialTicker = "BBH" marketTicker = "IC1"></Calculator>
       </header>
     </div>
   );

@@ -3,6 +3,7 @@ import { PriceGeter } from "../../API/accessors/prices"
 import { RecipiesGeter } from "../../API/accessors/recipies"
 import { priceParce } from "../../API/parcers/prices"
 import { recipiesParce } from "../../API/parcers/recipies"
+import './calculator.css'
 
 
 const SingleRecipe = (props) => {
@@ -20,10 +21,11 @@ const SingleRecipe = (props) => {
 
     let highProductionCost = materialPrices.reduce((acum, cur) => acum + (cur.Amount * cur.Ask), 0)
     let lowProductionCost = materialPrices.reduce((acum, cur) => acum + (cur.Amount * cur.Bid), 0)
-    let highProfit = price.Ask * recipe.Outputs.Amount - lowProductionCost
-    let lowProfit = price.Bid * recipe.Outputs.Amount - highProductionCost
+    let highProfit = Math.round(price.Ask * recipe.Outputs[0].Amount - lowProductionCost, -2)
+    let lowProfit = Math.round(price.Bid * recipe.Outputs[0].Amount - highProductionCost, -2)
 
-    return <p>{recipe.RecipeName} <br/> 
+    return <p className="SingleRecipe">{recipe.RecipeName} <br/> 
+        Low Production Cost: {lowProductionCost}; High Production Cost: {highProductionCost} <br/>
         High Profit: {highProfit}; Low Profit: {lowProfit} <br/>
         High Marginality: {highProfit / lowProductionCost} Low Marginality: {lowProfit / highProductionCost}</p>
 }
@@ -42,7 +44,6 @@ export const Calculator = (props) => {
         return () => (1)},
         [props.materialTicker, props.marketTicker])
 
-    //console.log(price, recipies)
-
-    return <p>{recipies.map(x => <><SingleRecipe price = {price} recipe = {x} marketTicker = {props.marketTicker}/><br/></>)}</p>
+    return <p className="Calculator"> {price.MaterialTicker} <br/>
+        {recipies.map(x => <><SingleRecipe price = {price} recipe = {x} marketTicker = {props.marketTicker}/><br/></>)}</p>
 }

@@ -1,0 +1,10 @@
+.Calculator {
+    background-color: white; 
+    color: black;
+    font-size: 12px
+}
+
+.SingleRecipe {
+    border: solid black 1px;
+    font-size: 10px
+}
