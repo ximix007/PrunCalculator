@@ -1,0 +1,8 @@
+.FlexContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.FlexContainer * {
+    flex: 0 1 auto
+}

@@ -1,13 +1,11 @@
 import './App.css';
-import { RecipiesView } from './components/recipiesView'
-import { PriceView } from "./components/pricesView"
-import { Calculator } from "./components/calculator/calculator"
+import { CalculatorController } from "./components/calculatorControl/calculatorController"
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Calculator materialTicker = "BBH" marketTicker = "IC1"></Calculator>
+        <CalculatorController></CalculatorController>
       </header>
     </div>
   );
