@@ -21,5 +21,5 @@ export const Calculator = (props) => {
         [props.materialTicker, props.marketTicker])
 
     return <p className="Calculator"> {price.MaterialTicker} <br/>
-        {recipies.map(x => <><SingleRecipe price = {price} recipe = {x} marketTicker = {props.marketTicker}/><br/></>)}</p>
+        {recipies.map(x => <><SingleRecipe recipe = {x} marketTicker = {props.marketTicker}/><br/></>)}</p>
 }
