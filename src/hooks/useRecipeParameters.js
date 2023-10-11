@@ -30,8 +30,8 @@ export const useRecipeParameters = (recipe, marketTicker) => {
     let highOutputsCost = round10(outputPrices.reduce((acum, cur) => acum + (cur.Amount * cur.Ask), 0))
     let lowOutputsCost = round10(outputPrices.reduce((acum, cur) => acum + (cur.Amount * cur.Bid), 0))
 
-    let highProfit = highOutputsCost - lowInputsCost
-    let lowProfit = lowOutputsCost - highInputsCost
+    let highProfit = round10(highOutputsCost - lowInputsCost)
+    let lowProfit = round10(lowOutputsCost - highInputsCost)
 
     let highMarginality = round10(highProfit / lowInputsCost)
     let lowMarginality = round10(lowProfit / highInputsCost)

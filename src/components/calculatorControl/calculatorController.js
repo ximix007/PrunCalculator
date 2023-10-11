@@ -15,3 +15,4 @@ export const CalculatorController = () => {
     <button onClick={() => setProps([...calculatorProps ,[materialTicker, marketTicker]])}>Add</button>
     <Flex>{calculatorProps.map(x => <Calculator materialTicker = {x[0]} marketTicker = {x[1]}></Calculator>)}</Flex></>
 }
+

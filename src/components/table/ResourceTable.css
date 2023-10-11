@@ -1,0 +1,9 @@
+.ResourceTable {
+    background-color: white; 
+    color: black;
+    font-size: 12px;
+    border-collapse: collapse;
+}
+.ResourceTable td, th {
+    border: solid black 1px;
+}
