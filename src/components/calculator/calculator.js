@@ -1,25 +1,10 @@
-import { useState, useEffect } from "react"
-import { PriceGeter } from "../../API/accessors/prices"
-import { RecipiesGeter } from "../../API/accessors/recipies"
-import { priceParce } from "../../API/parcers/prices"
-import { recipiesParce } from "../../API/parcers/recipies"
 import './calculator.css'
-import { SingleRecipe } from "./singleRecipe/singleRecipe"
+import { SingleRecipe } from "../RecipeView/textCard"
+import { useRecipeForMaterial } from "../../hooks/useRecipeForMaterial"
 
 export const Calculator = (props) => {
-    let [price, setPrice] = useState([])
-    let [recipies, setRecipies] = useState([])
+    let recipies = useRecipeForMaterial(props.materialTicker)
 
-    useEffect(() => {
-        RecipiesGeter.getInstance().GetRecipies(props.materialTicker)
-            .then(x => setRecipies(recipiesParce(x, props.materialTicker)));
-        
-        PriceGeter.getInstance().GetPrices(props.materialTicker, props.marketTicker)
-            .then(x => setPrice(priceParce(x)));
-
-        return () => (1)},
-        [props.materialTicker, props.marketTicker])
-
-    return <p className="Calculator"> {price.MaterialTicker} <br/>
+    return <p className="Calculator"> {props.materialTicker} <br/>
         {recipies.map(x => <><SingleRecipe recipe = {x} marketTicker = {props.marketTicker}/><br/></>)}</p>
 }

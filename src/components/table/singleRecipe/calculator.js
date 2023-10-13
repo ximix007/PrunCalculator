@@ -1,17 +1,8 @@
-import { useState, useEffect } from "react"
-import { RecipiesGeter } from "../../../API/accessors/recipies"
-import { recipiesParce } from "../../../API/parcers/recipies"
-import { TableRow } from "./tablerow"
+import { TableRow } from '../../RecipeView/tableRow'
+import { useRecipeForMaterial } from"../../../hooks/useRecipeForMaterial"
 
 export const Calculator = (props) => {
-    let [recipies, setRecipies] = useState([])
-
-    useEffect(() => {
-        RecipiesGeter.getInstance().GetRecipies(props.materialTicker)
-            .then(x => setRecipies(recipiesParce(x, props.materialTicker)));
-
-        return () => (1)},
-        [props.materialTicker, props.marketTicker])
+    let recipies = useRecipeForMaterial(props.materialTicker);
 
     return <> {recipies.map(x => <TableRow recipe = {x} marketTicker = {props.marketTicker}/>)}</>
 }

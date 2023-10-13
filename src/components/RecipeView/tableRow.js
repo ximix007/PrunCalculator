@@ -1,4 +1,4 @@
-import { useRecipeParameters } from "../../../hooks/useRecipeParameters"
+import { useRecipeParameters } from "../../hooks/useRecipeParameters"
 
 export const TableRow = (props) => {
     let result = useRecipeParameters(props.recipe, props.marketTicker)
