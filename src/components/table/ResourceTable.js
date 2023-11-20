@@ -1,19 +1,19 @@
 import { useState } from "react"
-import { Calculator } from "./singleRecipe/calculator"
+import { RowsGeneratorForMaterial } from "./rowsGenerators/RowsGeneratorForMaterial"
 import "./ResourceTable.css"
 import { MaterialInput } from "../Inputs/MaterialInput"
-import { TableRow } from '../RecipeView/tableRow'
-import { useRecipeForMaterial } from"../../hooks/useRecipeForMaterial"
+import { BuildingInput } from "../Inputs/BuildingInput"
 
 export const ResourceTable = () => {
-    let [calculatorProps, setProps] = useState([])
+    let [rowsComponents, setRowsComponents] = useState([])
 
-    const callback = (x) => setProps([...calculatorProps, x])
+    const callbackForMaterial = (x) => setRowsComponents([...rowsComponents, 
+        <RowsGeneratorForMaterial materialTicker = {x[0]} marketTicker = {x[1]}/>])
 
-    return <> <MaterialInput callback = {callback}/>
+    return <> <MaterialInput callback = {callbackForMaterial}/>
     <table className="ResourceTable">
         <Header/>
-        {calculatorProps.map(x => <Calculator materialTicker = {x[0]} marketTicker = {x[1]}/>)}
+        {rowsComponents}
     </table></>
 }
 

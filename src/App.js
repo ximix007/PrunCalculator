@@ -1,7 +1,7 @@
 import './App.css';
 import { CalculatorController } from "./components/calculatorControl/calculatorController"
 import { ResourceTable } from "./components/table/ResourceTable"
-import { BuildingGeter } from "./API/accessors/buldings"
+import { BuildingGeter } from "./API/accessors/buildings"
 
 function App() {
   BuildingGeter.getInstance().GetBuilding("SME").then(x => console.log(x))
